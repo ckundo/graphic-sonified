@@ -6,7 +6,9 @@ function handleMove(event) {
   [...touches].forEach(touch => {
     result.innerText = [touch.pageX, touch.pageY];
 
-    if (ctx.isPointInPath(path, touch.pageX, touch.pageY)) {
+    if (ctx.isPointInPath(path, touch.pageX, touch.pageY) ||
+      ctx.isPointInPath(star, touch.pageX, touch.pageY)
+    ) {
       if (noise && playing) { audioCtx.suspend(); playing = false; el.style.opacity = 1; }
     } else {
       if (noise && !playing) { audioCtx.resume(); playing = true; el.style.opacity = 0.8; }
